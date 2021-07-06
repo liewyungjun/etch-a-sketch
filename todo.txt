@@ -1,0 +1,1 @@
+find a way to maintain the grid pixel size to be the same regardless of cells

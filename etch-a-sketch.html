@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel='stylesheet' href='styles.css'>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <div id='button'><button onclick="reset()">Reset</button></div>
+    <div id='page'>
+        
+        <div id='container'></div>
+        
+    </div>
+    <script>
+        let container=document.querySelector('#container');
+        function reset(){
+            const pix=document.querySelectorAll('.drawn')
+            pix.forEach((a)=>{
+                a.classList.remove("drawn");
+            })
+            let size=prompt("Please Enter a Size!");
+            console.log(size);
+            clearGrid();
+            
+            generateGrid(size);
+        }
+        function clearGrid(){
+            while (container.firstChild){
+                container.removeChild(container.firstChild);
+            }
+        }
+        function generateGrid(x){
+            for (i=0;i<x*x;i++){
+                let div =document.createElement('div');
+                div.id='sketch';
+                container.appendChild(div);
+                div.addEventListener('mouseover',()=>{
+                div.classList.add("drawn");
+            })
+            }
+            
+        }
+        generateGrid(16);
+    </script>
+</body>
+
+</html>
