@@ -3,73 +3,20 @@
 
 <head>
     <link rel='stylesheet' href='styles.css'>
-    <title>Page Title</title>
+    <title>Jun's Etch-A-Sketch</title>
     <meta charset="UTF-8" />
 </head>
 
 <body>
+    <div id='topBanner'>Etch-A-Sketch</div>
     <div id='button'><button onclick="reset()">Reset</button></div>
     <div id='page'>
         
         <div id='container'></div>
         
     </div>
-    <script>
-        let container=document.querySelector('#container');
-        function getRGBValues(str) {
-                var vals = str.substring(str.indexOf('(') +1, str.length -1).split(', ');
-                return {
-                    'r': vals[0],
-                    'g': vals[1],
-                    'b': vals[2]
-                };
-        }
-        function reset(){
-            const pix=document.querySelectorAll('.drawn')
-            pix.forEach((a)=>{
-                a.classList.remove("drawn");
-            })
-            let size=prompt("Please Enter a Size!",0);
-            console.log(size);
-            clearGrid();
-            
-            generateGrid(size);
-        }
-        function clearGrid(){
-            while (container.firstChild){
-                container.removeChild(container.firstChild);
-            }
-        }
-        function generateGrid(x){
-            if (x<101&&x>-1){
-            for (i=0;i<x*x;i++){
-                let div =document.createElement('div');
-                div.id='sketch';
-                div.style.height=`${422/x}px`;
-                div.style.width=`${422/x}px`;
-                container.appendChild(div);
-                div.addEventListener('mouseover',()=>{
-                if (div.classList.contains('drawn')){
-                    let  dark = window.getComputedStyle(div).getPropertyValue("background-color");
-                    let x=getRGBValues(dark);
-                    div.style.backgroundColor=`rgb(${parseInt(x.r)*0.9},${parseInt(x.g)*0.9},${parseInt(x.b)*0.9})`;
-                    
-                }
-                else{
-                    div.classList.add("drawn");
-                    let R=Math.floor(Math.random() * 255);
-                    let G=Math.floor(Math.random() * 255);
-                    let B=Math.floor(Math.random() * 255);
-                    div.style.backgroundColor=`rgb(${R},${G},${B})`;
-                    
-                }
+    <script src='script.js'>
 
-            })
-            }}
-            else{alert('Invalid Input!')}
-            
-        }
-        generateGrid(16);
     </script>
 </body>
 
